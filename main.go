@@ -14,7 +14,7 @@ var (
 	guild    = flag.String("guild", "", "guild (server) to join")
 	channel  = flag.String("chan", "", "channel to join")
 	message  = flag.String("msg", "_", "message to be sent")
-	interval = flag.Int64("int", 60, "interval between messages in seconds")
+	interval = flag.Int64("int", 180, "interval between messages in seconds")
 )
 
 func main() {
@@ -40,6 +40,9 @@ func main() {
 	for t := time.Tick(time.Duration(*interval) * time.Second); ; <-t {
 		if _, err := s.ChannelMessageSend(id, *message); err != nil {
 			log.Print(err)
+		        channeler, _ := s.Channel(findChannel(s, g))
+			LastMessageID := channeler.LastMessageID
+		        s.ChannelMessageDelete(id, LastMessageID)
 		} else {
 			log.Print("sent message")
 		}
