@@ -15,7 +15,7 @@ This bot sends out a message every minute allowing you to rank up very fast.
 
 ## Install
 ```zsh
-go get github.com/nhooyr/rankbot
+go get github.com/jobensingh/rankbot
 ```
 
 ## Usage
